@@ -1,5 +1,6 @@
 package com.geeks.myapplication3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean isOperationClick;
     private String operator;
     private Boolean clickedPerc = false;
+    private Button btnActivity2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +26,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textView = findViewById(R.id.text_view);
+        btnActivity2 = findViewById(R.id.btn_activity2);
+
+        btnActivity2.setVisibility(View.GONE);
+
+
+        findViewById(R.id.btn_activity2).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+            startActivity(intent);
+        });
     }
 
 
     public void onNumberClick(View view) {
         clickedPerc = false;
         String text = ((MaterialButton) view).getText().toString();
+
+        btnActivity2.setVisibility(View.GONE);
+
         if (text.equals("AC")) {
             textView.setText("0");
             firstValue = 0.0;
@@ -48,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onOperationClick(View view) {
         String textButton = ((Button) view).getText().toString();
+
+        btnActivity2.setVisibility(View.GONE);
+
         switch (textButton) {
             case "+":
                 firstValue = Double.valueOf(textView.getText().toString());
@@ -105,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                 }
+                btnActivity2.setVisibility(View.VISIBLE);
                 break;
         }
         isOperationClick = true;
