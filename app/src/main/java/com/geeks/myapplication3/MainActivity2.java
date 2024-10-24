@@ -2,8 +2,10 @@ package com.geeks.myapplication3;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -33,6 +35,11 @@ public class MainActivity2 extends AppCompatActivity {
        btn_next.setOnClickListener(v -> {
            finishAffinity();
        });
+
+       Spinner typeSpinner = findViewById(R.id.category_spinner);
+       String[] typeOptions = {"Type 1", "Type 2", "Type 3"};
+       ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, typeOptions);
+       typeSpinner.setAdapter(adapter);
    }
 
 }
